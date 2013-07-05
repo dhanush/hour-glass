@@ -4,14 +4,29 @@
  */
 
 var express = require('express')
-  , routes = require('./routes')
-  , signin = require('./routes/signin')
-  , signup = require('./routes/signup')
-  , user = require('./routes/user')
+  , fs = require('fs')
+  , mongoose = require('mongoose')
+  , db =  mongoose.connect("mongodb://localhost/hour-glass")
   , http = require('http')
   , path = require('path');
 
+
+
+
+//Bootstrap models
+var models_path = __dirname + '/models';
+fs.readdirSync(models_path).forEach(function (file) {
+  if (~file.indexOf('.js')) require(models_path + '/' + file);
+});
+
+
 var app = express();
+
+var  routes = require('./routes')
+, signin = require('./routes/signin')
+, signup = require('./routes/signup')
+, home = require('./routes/home')
+, user = require('./routes/user');
 
 // all environments
 app.set('port', process.env.PORT || 3000);
@@ -30,10 +45,13 @@ if ('development' == app.get('env')) {
   app.use(express.errorHandler());
 }
 
-app.get('/', routes.index);
-app.get('/signin', signin.signin);
+app.get('/', signin.signin);
+app.post('/signin/do', signin.signindo);
+
 app.get('/signup', signup.signup);
-app.get('/signup/new', signup.signupnew);
+app.post('/signup/new', signup.signupnew);
+
+app.get('/home', home.list);
 
 app.get('/users', user.list);
 

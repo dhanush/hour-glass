@@ -70,10 +70,10 @@ head
           //
             /.nav-collapse 
     .container
-      form.form-signin
+      form.form-signin(method='post', action='/signin/do')
         h2.form-signin-heading Please sign in
-        input.input-block-level(type='text', placeholder='Email address')
-        input.input-block-level(type='password', placeholder='Password')
+        input.input-block-level(name='email', type='text', placeholder='Email address')
+        input.input-block-level(name='password', type='password', placeholder='Password')
         label.checkbox
           input(type='checkbox', value='remember-me')
           | Remember me

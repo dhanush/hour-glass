@@ -70,24 +70,24 @@ head
             span.icon-bar
           a.brand(href='#')  #{project_name}
     .container
-      form.form-signup(method='post', action='/signup')
+      form.form-signup(method='post', action='/signup/new')
         .heading
           h4.form-heading Sign Up
         .control-group
           .controls
-            input#inputCompanyName(type='text', value='Beyond Bytes Technologies')
+            input#inputCompanyName( type='text', value='Beyond Bytes Technologies')
         .control-group
           .controls
-            input#inputFirst(type='text', placeholder='First Name')
+            input#inputFirst(name="firstname", type='text', placeholder='First Name')
         .control-group
           .controls
-            input#inputLast(type='text', placeholder='Last Name')
+            input#inputLast(name="lastname", type='text', placeholder='Last Name')
         .control-group
           .controls
-            input#inputEmail(type='text', placeholder='Email')
+            input#inputEmail(name="email", type='text', placeholder='Email')
         .control-group
           .controls
-            input#inputPassword(type='password', placeholder='Password')
+            input#inputPassword(name="password", type='password', placeholder='Password')
         .control-group
           .controls
             button.btn.btn-success(type='submit') Sign Up

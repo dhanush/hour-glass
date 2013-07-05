@@ -1,6 +1,8 @@
 Hour Glass
 ==========
 
+[![Build Status](https://travis-ci.org//dhanush/hour-glass.png)](https://travis-ci.org/dhanush/hour-glass)
+
 A simple time management software for startups. Built on top of Node.js, Express.js, MongoDB and Twitter Bootstrap
 
 To run the application install Node.js and from the node command line install express

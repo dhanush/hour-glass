@@ -5,7 +5,7 @@ A simple time management software for startups. Built on top of Node.js, Express
 
 To run the application install Node.js and from the node command line install express
 
-    `npm install express -g`
+    npm install express -g
 
 Then install the dependencies using 
 

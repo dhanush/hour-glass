@@ -8,7 +8,9 @@ var express = require('express')
   , mongoose = require('mongoose')
   , db =  mongoose.connect("mongodb://localhost/hour-glass")
   , http = require('http')
-  , path = require('path');
+  , path = require('path')
+  , passport = require('passport');
+  
 
 
 
@@ -32,13 +34,27 @@ var  routes = require('./routes')
 app.set('port', process.env.PORT || 3000);
 app.set('views', __dirname + '/views');
 app.set('view engine', 'jade');
-app.use(express.favicon());
+//app.use(express.favicon());
 app.use(express.logger('dev'));
 app.use(express.bodyParser());
 app.use(express.methodOverride());
+app.use(passport.initialize());
+app.use(passport.session());
 app.use(app.router);
 app.use(require('stylus').middleware(__dirname + '/public'));
 app.use(express.static(path.join(__dirname, 'public')));
+
+
+//passport.use(new LocalStrategy(
+//        function(username, password, done) {
+//            done(null, { id: 0, username: 'juancito' });
+//        }
+//    ));
+
+    passport.serializeUser(function(user, done) {
+        done(null, user.email);
+    });
+
 
 // development only
 if ('development' == app.get('env')) {
@@ -51,7 +67,7 @@ app.post('/signin/do', signin.signindo);
 app.get('/signup', signup.signup);
 app.post('/signup/new', signup.signupnew);
 
-app.get('/home', home.list);
+app.get('/home', home.home);
 
 app.get('/users', user.list);
 

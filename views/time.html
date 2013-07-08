@@ -35,7 +35,9 @@
       <link rel="apple-touch-icon-precomposed" sizes="72x72" href="ico/apple-touch-icon-72-precomposed.png">
                     <link rel="apple-touch-icon-precomposed" href="ico/apple-touch-icon-57-precomposed.png">
                     
-                    
+                <link rel="stylesheet" href="http://www.eyecon.ro/bootstrap-datepicker/css/datepicker.css">
+<link rel="stylesheet" href="http://www.eyecon.ro/bootstrap-datepicker/css/bootstrap.css">
+ 
 
   </head>
 
@@ -70,18 +72,24 @@
           <div class="well sidebar-nav">
             <ul class="nav nav-list">
               <li class="nav-header">Year</li>
-              <input type="text" id="datepicker" data-format="yyyy" />
-              <li class="nav-header">Sidebar</li>
-              <li><a href="#">Link</a></li>
-              <li><a href="#">Link</a></li>
-              <li><a href="#">Link</a></li>
-              <li><a href="#">Link</a></li>
-              <li><a href="#">Link</a></li>
-              <li><a href="#">Link</a></li>
-              <li class="nav-header">Sidebar</li>
-              <li><a href="#">Link</a></li>
-              <li><a href="#">Link</a></li>
-              <li><a href="#">Link</a></li>
+              <input type="text" id="datepicker" />
+              <li class="nav-header">Month</li>
+              <li><a href="#">January</a></li>
+              <li><a href="#">February</a></li>
+              <li><a href="#">March</a></li>
+              <li><a href="#">April</a></li>
+              <li><a href="#">May</a></li>
+              <li><a href="#">June</a></li>
+                           <li><a href="#">July</a></li>
+              <li><a href="#">August</a></li>
+              <li><a href="#">September</a></li>
+              <li><a href="#">October</a></li>
+              <li><a href="#">November</a></li>
+              <li><a href="#">Devember</a></li>
+              <li class="nav-header">Projects</li>
+              <li><a href="#">A</a></li>
+              <li><a href="#">B</a></li>
+              <li><a href="#">C</a></li>
             </ul>
           </div><!--/.well -->
         </div><!--/span-->
@@ -141,23 +149,28 @@
     <!-- Placed at the end of the document so the pages load faster -->
 
     <script src="../public/javascripts/vendor/jquery-1.10.1.min.js"></script>
-    <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
-        <script src="../public/javascripts/vendor/bootstrap.js"></script>
-    <script src="../public/javascripts/vendor/bootstrap.min.js"></script>
+    
     <script src="../public/javascripts/vendor/modernizr-2.6.2-respond-1.1.0.min.js"></script>
     
 
+    <script src="http://code.jquery.com/ui/1.10.2/jquery-ui.js"></script>
+    <script src="http://www.eyecon.ro/bootstrap-datepicker/js/bootstrap-datepicker.js"/>
+    <script src="../public/javascripts/vendor/bootstrap.js"></script>    
+    <script src="../public/javascripts/vendor/bootstrap.min.js"></script>
+    
 
-<script>
-$(function() {
+    <script>
+        $(function(){
 
-$(.datepicker").datepicker( {
-    format: " yyyy",
-    viewMode: "years", 
-    minViewMode: "years"
-});
+          var checkout = $("#datepicker").datepicker( {
+          format: " yyyy",
+          viewMode: "years", 
+          minViewMode: "years"
+      }).on('changeDate', function(ev) {
+checkout.hide();
+}).data('datepicker');
+ });
+</script>   
 
-});
-</script> 
   </body>
 </html>

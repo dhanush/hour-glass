@@ -24,10 +24,6 @@ exports.signupnew = function(req, res) {
 				title : 'Sign up'
 			});
 		}
-		// else {
-		// res.redirect("/signin/do");
-		// }
-
 		// // manually login the user once successfully signed up
 		req.logIn(employee, function(err) {
 			if (err) {

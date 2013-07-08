@@ -13,13 +13,13 @@ var EmployeeSchema = new Schema({
 
 EmployeeSchema.methods = {
 	authenticate : function(plainText) {
-		return this.plainText === this.password;
+		return this.password === plainText;
 	}
 };
 
-EmployeeSchema.statics.findByEmail = function(email, cb) {
+EmployeeSchema.statics.findByEmail = function(emailStr, cb) {
 	this.find({
-		email : new RegExp(email, 'i')
+		email : emailStr
 	}, cb);
 }
 

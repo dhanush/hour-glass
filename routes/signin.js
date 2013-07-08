@@ -2,23 +2,33 @@
  * New node file
  */
 
+var mongoose = require('mongoose'), Employee = mongoose.model('Employee');
 
-var mongoose = require('mongoose'),
-   Employee = mongoose.model('Employee');
-
-exports.signin = function(req, res){
-	 res.render('signin', { project_name: 'Hour Glass' });
+exports.signin = function(req, res) {
+	res.render('signin', {
+		project_name : 'Hour Glass'
+	});
 };
 
-exports.signindo = function(req, res){
+exports.signindo = function(req, res) {
 	var request_body = req.body;
 	console.log(request_body);
-	
-	var employeeDB = Employee.findByEmail(request_body.email);
-	var loggedin = employeeDB.authenticate(request_body.password);
-	if(loggedin) {
-		res.redirect("home", employeeDB);
-	}
-	
-	
+
+	Employee.findByEmail(request_body.email, function(err, employee) {
+		if (err) {
+			console.log(err);
+			return next(err);
+		}
+		console.log(employee);
+		var logging_in_user = employee[0];
+		var loggedin = logging_in_user.authenticate(request_body.password);
+		if (loggedin) {
+			res.redirect('/home?user=' + logging_in_user.email);
+		} else {
+			res.render('signin', {
+				project_name : 'Hour Glass'
+			});
+		}
+	});
+
 };

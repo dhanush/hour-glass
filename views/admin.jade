@@ -1,0 +1,113 @@
+!!! 5
+html(lang='en')
+head
+    meta(charset='utf-8')
+    title Projects
+    meta(name='viewport', content='width=device-width, initial-scale=1.0')
+    meta(name='description', content='')
+    meta(name='author', content='')
+    //
+       Le styles 
+    link(href='/css/bootstrap.css', rel='stylesheet')
+    style(type='text/css')
+      body {
+      padding-top: 60px;
+      padding-bottom: 40px;
+      }
+      .sidebar-nav {
+      padding: 9px 0;
+      }
+      @media (max-width: 980px) {
+      /* Enable use of floated navbar text */
+      .navbar-text.pull-right {
+      float: none;
+      padding-left: 5px;
+      padding-right: 5px;
+      }
+      }
+    link(href='/css/bootstrap-responsive.css', rel='stylesheet')
+    link(rel='shortcut icon', href='favicon.ico')
+    //
+       Fav and touch icons 
+    link(rel='apple-touch-icon-precomposed', sizes='144x144', href='ico/apple-touch-icon-144-precomposed.png')
+    link(rel='apple-touch-icon-precomposed', sizes='114x114', href='ico/apple-touch-icon-114-precomposed.png')
+    link(rel='apple-touch-icon-precomposed', sizes='72x72', href='ico/apple-touch-icon-72-precomposed.png')
+    link(rel='apple-touch-icon-precomposed', href='ico/apple-touch-icon-57-precomposed.png')
+    link(rel='stylesheet', href='http://www.eyecon.ro/bootstrap-datepicker/css/datepicker.css')
+    link(rel='stylesheet', href='http://www.eyecon.ro/bootstrap-datepicker/css/bootstrap.css')
+    script(src='/javascripts/vendor/jquery-1.10.1.min.js')
+    script(src='/javascripts/vendor/modernizr-2.6.2-respond-1.1.0.min.js')
+    script(src='http://code.jquery.com/ui/1.10.2/jquery-ui.js')
+    script(src='http://www.eyecon.ro/bootstrap-datepicker/js/bootstrap-datepicker.js')
+    script(src='/javascripts/vendor/bootstrap.js')
+    script(src='/javascripts/vendor/bootstrap.min.js')
+    script
+      $(function(){
+      var checkout = $("#start_date").datepicker( {
+      format: "dd/mm/yyyy"
+      }).on('changeDate', function(ev) {
+      checkout.hide();
+      }).data('datepicker');
+      });
+      $(function(){
+      var checkout = $("#end_date").datepicker( {
+      format: "dd/mm/yyyy"
+      }).on('changeDate', function(ev) {
+      checkout.hide();
+      }).data('datepicker');
+      });
+  body
+    .navbar.navbar-inverse.navbar-fixed-top
+      .navbar-inner
+        .container-fluid
+          button.btn.btn-navbar(type='button', data-toggle='collapse', data-target='.nav-collapse')
+            span.icon-bar
+            span.icon-bar
+            span.icon-bar
+          a.brand(href='#') #{appname}
+          .nav-collapse.collapse
+            p.navbar-text.pull-right
+              | Logged in as #{username}
+    .container-fluid
+      .row-fluid
+        .span2
+          .well.sidebar-nav
+            ul.nav.nav-list
+              li.nav-header Projects
+                if (typeof(projects) !== 'undefined')
+                  each item in projects
+                    li
+                      a(href='/admin/projects/#{item.code}') #{item.name}
+        .span7
+          ul.nav.nav-list
+            if (typeof(selected_project) !== 'undefined')
+              li.nav-header #{selected_project.name}
+              li #{selected_project.code}
+              li #{selected_project.description}
+              li #{selected_project.start_date}
+              li #{selected_project.end_date}
+        .span3
+          .row-fluid
+            .container
+              form.form-signup(method='post', action='/admin/create')
+                .control-group
+                  .controls
+                    input#name(name="name", type='text', placeholder='Project Name')
+                .control-group
+                  .controls
+                    input#code(name="code", type='text', placeholder='Project Code')
+                .control-group
+                  .controls
+                    input#description(name="description", type='text', placeholder='Description')
+                .control-group
+                  .controls
+                    input#start_date(name="start_date", type='text', placeholder='Start Date')
+                .control-group
+                  .controls
+                    input#end_date(name="end_date", type='text', placeholder='End Date')
+                .control-group
+                  .controls
+                    button.btn.btn-success(type='submit') Create
+      hr
+      footer
+        p Beyond Bytes

@@ -10,7 +10,7 @@ exports.home = function(req, res) {
 	
 	if (useremail == null) {
 		res.render('signin', {
-			project_name : 'Hour Glass'
+			appname : 'Hour Glass'
 		});
 	}
 	console.log('In home page for user ' + useremail);

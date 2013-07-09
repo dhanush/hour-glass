@@ -6,7 +6,7 @@ var mongoose = require('mongoose'), Employee = mongoose.model('Employee');
 
 exports.signin = function(req, res) {
 	res.render('signin', {
-		project_name : 'Hour Glass'
+		appname : 'Hour Glass'
 	});
 };
 
@@ -15,7 +15,7 @@ exports.signindo = function(req, res) {
 	console.log(request_body);
 	//as of now I am harcoding admin user
 	if(request_body.email =='admin@hour-glass.com') {
-		res.redirect('/admin');
+		res.redirect('/admin/projects');
 	}
 	else {
 		Employee.findByEmail(request_body.email, function(err, employee) {
@@ -30,7 +30,7 @@ exports.signindo = function(req, res) {
 				res.redirect('/home?user=' + logging_in_user.email);
 			} else {
 				res.render('signin', {
-					project_name : 'Hour Glass'
+					appname : 'Hour Glass'
 				});
 			}
 		});

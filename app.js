@@ -14,7 +14,9 @@ fs.readdirSync(models_path).forEach(function(file) {
 
 var app = express();
 
-var routes = require('./routes'), signin = require('./routes/signin'), signup = require('./routes/signup'), home = require('./routes/home'), user = require('./routes/user');
+var routes = require('./routes'), signin = require('./routes/signin'), 
+	signup = require('./routes/signup'), home = require('./routes/home'), 
+	user = require('./routes/user'), admin= require('./routes/admin');
 
 // all environments
 app.set('port', process.env.PORT || 3000);
@@ -48,7 +50,8 @@ app.post('/signup/new', signup.signupnew);
 app.get('/home', home.home);
 
 app.get('/users', user.list);
-app.get('/admin', admin.list);
+app.get('/admin/projects', admin.projects);
+app.post('/admin/create', admin.create);
 
 http.createServer(app).listen(app.get('port'), function() {
 	console.log('Express server listening on port ' + app.get('port'));

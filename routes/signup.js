@@ -9,7 +9,7 @@ var mongoose = require('mongoose'), Employee = mongoose.model('Employee')
  */
 exports.signup = function(req, res) {
 	res.render('signup', {
-		project_name : 'Hour Glass'
+		appname : 'Hour Glass'
 	});
 };
 

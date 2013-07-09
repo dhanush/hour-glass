@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Project Home</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <!-- Le styles -->
+    <link href="../public/css/bootstrap.css" rel="stylesheet">
+    <style type="text/css">
+      body {
+        padding-top: 60px;
+        padding-bottom: 40px;
+      }
+      .sidebar-nav {
+        padding: 9px 0;
+      }
+
+      @media (max-width: 980px) {
+        /* Enable use of floated navbar text */
+        .navbar-text.pull-right {
+          float: none;
+          padding-left: 5px;
+          padding-right: 5px;
+        }
+      }
+    </style>
+    <link href="../public/css/bootstrap-responsive.css" rel="stylesheet">
+    <link rel="shortcut icon" href="favicon.ico">
+    <!-- Fav and touch icons -->
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="ico/apple-touch-icon-144-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="ico/apple-touch-icon-114-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="ico/apple-touch-icon-72-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" href="ico/apple-touch-icon-57-precomposed.png">
+
+    <link rel="stylesheet" href="http://www.eyecon.ro/bootstrap-datepicker/css/datepicker.css">
+    <link rel="stylesheet" href="http://www.eyecon.ro/bootstrap-datepicker/css/bootstrap.css">
+    <script src="../public/javascripts/vendor/jquery-1.10.1.min.js"></script>
+    
+    <script src="../public/javascripts/vendor/modernizr-2.6.2-respond-1.1.0.min.js"></script>
+    <script src="http://code.jquery.com/ui/1.10.2/jquery-ui.js"></script>
+    <script src="http://www.eyecon.ro/bootstrap-datepicker/js/bootstrap-datepicker.js"/>
+    <script src="../public/javascripts/vendor/bootstrap.js"></script>    
+    <script src="../public/javascripts/vendor/bootstrap.min.js"></script>
+    
+
+    <script>
+        $(function(){
+
+          var checkout = $("#startDate").datepicker( {
+          format: " dd/mm/yyyy"
+      }).on('changeDate', function(ev) {
+checkout.hide();
+}).data('datepicker');
+ });
+
+              $(function(){
+
+          var checkout = $("#endDate").datepicker( {
+          format: " dd/mm/yyyy"
+
+      }).on('changeDate', function(ev) {
+checkout.hide();
+}).data('datepicker');
+ });
+</script>  
+  </head>
+
+  <body>
+
+    <div class="navbar navbar-inverse navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container-fluid">
+          <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="brand" href="#">#{appname}</a>
+          <div class="nav-collapse collapse">
+            <p class="navbar-text pull-right">
+              Logged in as #{username}
+            </p>
+          </div><!--/.nav-collapse -->
+        </div>
+      </div>
+    </div>
+
+    <div class="container-fluid">
+      <div class="row-fluid">
+        <div class="span2">
+          <div class="well sidebar-nav">
+            <ul class="nav nav-list">
+              <li class="nav-header">Projects</li>
+              <li><a href="#">A</a></li>
+              <li><a href="#">B</a></li>
+              <li><a href="#">C</a></li>
+            </ul>
+          </div><!--/.well -->
+        </div><!--/span-->
+         <div class="span7">
+          
+            <ul class="nav nav-list">
+              <li class="nav-header">Project Name</li>
+              <li>Code</li>
+              <li>DEsc</li>
+              <li>Start</li>
+              <li>End</li>
+            </ul>
+          
+        </div><!--/span-->
+         <div class="span3">
+          <div class="row-fluid">
+            <div class="container" >
+          		<form class="form-signup" method="post" action="/admin/create">
+          			<div class="control-group">
+          				<div class="controls">
+          					<input type="text" id="inputProjectName" placeholder="Project Name">
+          				</div>
+          			</div>
+          			<div class="control-group">
+          				<div class="controls">
+          					<input type="text" id="inputProjectCode" placeholder="Project Code">
+          				</div>
+          			</div>
+          			<div class="control-group">
+          				<div class="controls">
+          					<input type="text" id="inputDesc" placeholder="Description">
+          				</div>
+          			</div>
+          			<div class="control-group">
+          				<div class="controls">
+          					<input type="text" id="startDate" placeholder="Start Date">
+          				</div>
+          			</div>
+          			<div class="control-group">
+          				<div class="controls">
+          					<input type="text" id="endDate" placeholder="End Date">
+          				</div>
+          			</div>
+          			<div class="control-group">
+          				<div class="controls">
+          					<button type="submit" class="btn btn-success">Create</button>
+          				</div>
+          			</div>	
+          			<div class="alert alert-info" id="#signup-complete" style="display:none;">
+          				<button type="button" class="close" data-dismiss="alert">×</button>
+          				<strong>Confirmation: </strong> Thank you for creating the project.
+          			</div>
+          		</form>	
+	            </div> <!-- Container -->
+	        </div><!--/row-->
+      </div><!--Span 3-->
+    </div>
+      <hr>
+
+      <footer>
+        <p>&copy; Beyond Bytes</p>
+      </footer>
+
+    </div><!--/.fluid-container-->
+
+    <!-- Le javascript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+ 
+
+  </body>
+</html>

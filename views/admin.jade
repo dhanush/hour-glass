@@ -44,14 +44,14 @@ head
     script
       $(function(){
       var checkout = $("#start_date").datepicker( {
-      format: "dd/mm/yyyy"
+      format: "mm/dd/yyyy"
       }).on('changeDate', function(ev) {
       checkout.hide();
       }).data('datepicker');
       });
       $(function(){
       var checkout = $("#end_date").datepicker( {
-      format: "dd/mm/yyyy"
+      format: "mm/dd/yyyy"
       }).on('changeDate', function(ev) {
       checkout.hide();
       }).data('datepicker');
@@ -74,8 +74,8 @@ head
           .well.sidebar-nav
             ul.nav.nav-list
               li.nav-header Projects
-                if (typeof(projects) !== 'undefined')
-                  each item in projects
+                if (typeof(all_projects) !== 'undefined')
+                  each item in all_projects
                     li
                       a(href='/admin/projects/#{item.code}') #{item.name}
         .span7

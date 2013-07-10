@@ -21,7 +21,7 @@ ProjectSchema.statics = {
 
 	findByCode : function(project_code, cb) {
 		this.find({
-			name : project_code
+			code : project_code
 		}, cb);
 	},
 

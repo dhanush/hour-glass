@@ -11,6 +11,8 @@
     "stylus": "*",
     "mongoose" :"latest",
     "passport": "latest",
-    "passport-local": "latest"
+    "passport-local": "latest",
+    "moment" : "latest"
+    
   }
 }

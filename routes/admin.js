@@ -5,6 +5,11 @@
 var mongoose = require('mongoose'), Project = mongoose.model('Project'), moment = require('moment'), url = require('url');
 
 exports.projects = function(req, res) {
+	console.log(req.user);
+	if (req.user != 'admin@hour-glass.com') {
+		res.redirect('/');
+	};
+
 	Project.list(function(err, projects) {
 		if (err) {
 			console.log(err);

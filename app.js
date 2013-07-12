@@ -3,7 +3,9 @@
  */
 
 var express = require('express'), fs = require('fs'), mongoose = require('mongoose'), db = mongoose
-		.connect("mongodb://localhost/hour-glass"), http = require('http'), path = require('path'), passport = require('passport');
+		.connect("mongodb://localhost/hour-glass"), http = require('http'), path = require('path'),
+		passport = require('passport') 
+		
 
 // Bootstrap models
 var models_path = __dirname + '/models';
@@ -12,11 +14,12 @@ fs.readdirSync(models_path).forEach(function(file) {
 		require(models_path + '/' + file);
 });
 
+//bootstrap passport config
+require('./config/passport')(passport)
+
 var app = express();
 
-var routes = require('./routes'), signin = require('./routes/signin'), 
-	signup = require('./routes/signup'), home = require('./routes/home'), 
-	user = require('./routes/user'), admin= require('./routes/admin');
+var routes = require('./routes'), signin = require('./routes/signin'), signup = require('./routes/signup'), home = require('./routes/home'), user = require('./routes/user'), admin = require('./routes/admin');
 
 // all environments
 app.set('port', process.env.PORT || 3000);
@@ -24,7 +27,22 @@ app.set('views', __dirname + '/views');
 app.set('view engine', 'jade');
 // app.use(express.favicon());
 app.use(express.logger('dev'));
+app.use(express.cookieParser());
 app.use(express.bodyParser());
+
+// app.use(express.cookieSession());
+
+// express/mongo session storage
+// app.use(express.session({
+// secret: 'hourglass',
+// store: new db({
+// url: "mongodb://localhost/hour-glass",
+// collection : 'sessions'
+// })
+// }))
+app.use(express.session({
+	secret : 'keyboard cat'
+}));
 app.use(express.methodOverride());
 app.use(passport.initialize());
 app.use(passport.session());
@@ -32,15 +50,11 @@ app.use(app.router);
 app.use(require('stylus').middleware(__dirname + '/public'));
 app.use(express.static(path.join(__dirname, 'public')));
 
-passport.serializeUser(function(user, done) {
-	done(null, user.email);
-});
-
 // development only
 if ('development' == app.get('env')) {
 	app.use(express.errorHandler());
 }
-
+app.use(express.errorHandler({ dumpExceptions: true, showStack: true }));
 app.get('/', signin.signin);
 app.post('/signin/do', signin.signindo);
 

@@ -11,6 +11,7 @@ var EmployeeSchema = new Schema({
 	password : String
 });
 
+
 EmployeeSchema.methods = {
 	authenticate : function(plainText) {
 		return this.password === plainText;

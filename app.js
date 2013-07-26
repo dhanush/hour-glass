@@ -2,72 +2,35 @@
  * Module dependencies.
  */
 
-var express = require('express'), fs = require('fs'), mongoose = require('mongoose'), db = mongoose
-		.connect("mongodb://localhost/hour-glass"), http = require('http'), path = require('path'),
-		passport = require('passport') 
+var express = require('express')
+    , fs = require('fs')
+    , passport = require('passport')
 		
+/**
+ * Main application entry file.
+ * Please note that the order of loading is important.
+ */
 
-// Bootstrap models
-var models_path = __dirname + '/models';
-fs.readdirSync(models_path).forEach(function(file) {
-	if (~file.indexOf('.js'))
-		require(models_path + '/' + file);
-});
+// Load configurations
+// if test env, load example file
+var env = process.env.NODE_ENV || 'development'
+    , config = require('./config/config')[env]
+    , mongoose = require('mongoose')
 
+// Bootstrap db connection
+    console.log('Database');
+console.log(config.db)
+mongoose.connect(config.db)
 //bootstrap passport config
-require('./config/passport')(passport)
-
 var app = express();
+// express settings
+var express = require('./config/express')  ;
+express(app,config);
 
-var routes = require('./routes'), signin = require('./routes/signin'), signup = require('./routes/signup'), home = require('./routes/home'), user = require('./routes/user'), admin = require('./routes/admin');
+require('./config/passport')(passport, config)
+// Start the app by listening on <port>
+var port = process.env.PORT || 3000
+app.listen(port)
 
-// all environments
-app.set('port', process.env.PORT || 3000);
-app.set('views', __dirname + '/views');
-app.set('view engine', 'jade');
-// app.use(express.favicon());
-app.use(express.logger('dev'));
-app.use(express.cookieParser());
-app.use(express.bodyParser());
+console.log('Express app started on port '+port)
 
-// app.use(express.cookieSession());
-
-// express/mongo session storage
-// app.use(express.session({
-// secret: 'hourglass',
-// store: new db({
-// url: "mongodb://localhost/hour-glass",
-// collection : 'sessions'
-// })
-// }))
-app.use(express.session({
-	secret : 'keyboard cat'
-}));
-app.use(express.methodOverride());
-app.use(passport.initialize());
-app.use(passport.session());
-app.use(app.router);
-app.use(require('stylus').middleware(__dirname + '/public'));
-app.use(express.static(path.join(__dirname, 'public')));
-
-// development only
-if ('development' == app.get('env')) {
-	app.use(express.errorHandler());
-}
-app.use(express.errorHandler({ dumpExceptions: true, showStack: true }));
-app.get('/', signin.signin);
-app.post('/signin/do', signin.signindo);
-
-app.get('/signup', signup.signup);
-app.post('/signup/new', signup.signupnew);
-
-app.get('/home', home.home);
-
-app.get('/users', user.list);
-app.get('/admin/projects', admin.projects);
-app.post('/admin/create', admin.create);
-app.get('/admin/projects/:code', admin.project);
-
-http.createServer(app).listen(app.get('port'), function() {
-	console.log('Express server listening on port ' + app.get('port'));
-});

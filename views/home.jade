@@ -1,0 +1,77 @@
+!!! 5
+html(lang='en', xmlns='http://www.w3.org/1999/xhtml', xmlns:fb='https://www.facebook.com/2008/fbml', itemscope='itemscope', itemtype='http://schema.org/Product')
+head
+    meta(charset='utf-8')
+    title Project Home
+    meta(name='viewport', content='width=device-width, initial-scale=1.0')
+    meta(name='description', content='')
+    meta(name='author', content='')
+    //
+       Le styles 
+    link(href='../public/css/bootstrap.css', rel='stylesheet')
+    style(type='text/css')
+      body {
+      padding-top: 60px;
+      padding-bottom: 40px;
+      }
+      .sidebar-nav {
+      padding: 9px 0;
+      }
+      @media (max-width: 980px) {
+      /* Enable use of floated navbar text */
+      .navbar-text.pull-right {
+      float: none;
+      padding-left: 5px;
+      padding-right: 5px;
+      }
+      }
+    link(href='../public/css/bootstrap-responsive.css', rel='stylesheet')
+    link(rel='shortcut icon', href='favicon.ico')
+    //
+       Fav and touch icons 
+    link(rel='apple-touch-icon-precomposed', sizes='144x144', href='ico/apple-touch-icon-144-precomposed.png')
+    link(rel='apple-touch-icon-precomposed', sizes='114x114', href='ico/apple-touch-icon-114-precomposed.png')
+    link(rel='apple-touch-icon-precomposed', sizes='72x72', href='ico/apple-touch-icon-72-precomposed.png')
+    link(rel='apple-touch-icon-precomposed', href='ico/apple-touch-icon-57-precomposed.png')
+    link(rel='stylesheet', href='http://www.eyecon.ro/bootstrap-datepicker/css/datepicker.css')
+    link(rel='stylesheet', href='http://www.eyecon.ro/bootstrap-datepicker/css/bootstrap.css')
+    script(src='../public/javascripts/vendor/jquery-1.10.1.min.js')
+    script(src='../public/javascripts/vendor/modernizr-2.6.2-respond-1.1.0.min.js')
+    script(src='http://code.jquery.com/ui/1.10.2/jquery-ui.js')
+    script(src='../public/javascripts/vendor/bootstrap.js')
+    script(src='../public/javascripts/vendor/bootstrap.min.js')
+  body
+    .navbar.navbar-inverse.navbar-fixed-top
+      .navbar-inner
+        .container-fluid
+          a.brand(href='/') #{appname}
+          .nav-collapse.collapse
+            p.navbar-text.pull-right
+              | Logged in as #{username}
+    .container-fluid
+      .row-fluid
+        .span2
+          .well.sidebar-nav
+            ul.nav.nav-list
+        .span7
+          table#example.table.table-striped.table-bordered(border='0', cellpadding='0', cellspacing='0')
+            thead
+              tr
+                th(width='10%') Name
+                th(width='10%') Status
+                th(width='15%') Date & Time
+                th(width='12%') Sent To:
+                th(width='15%') No Of Emails
+                th(width='20%') Opened Emails %
+                th(width='12%') Action
+              tr
+                td(width='10%') Name
+                td(width='10%') Status
+                td(width='15%') Date & Time
+                td(width='12%') Sent To:
+                td(width='15%') No Of Emails
+                td(width='20%') Opened Emails %
+                td(width='12%') Action
+      hr
+      footer
+        p © Beyond Bytes

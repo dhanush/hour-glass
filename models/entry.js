@@ -9,7 +9,7 @@ var EntrySchema = new Schema({
 	day : String,
 	workinfo : String,
 	leavetype : String,
-	hours: int
+	hours: Number
 });
 
 mongoose.model('Entry', EntrySchema);
